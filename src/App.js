@@ -2,7 +2,8 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from './pages/Home/Home'
 import PokedexPage from './pages/PokedexPage/PokedexPage'
 import DetailPage from './pages/DetailPage/DetailPage'
-import Header from './components/Header/Header'
+import HomeHeader from './pages/Home/HomeHeader'
+import HeaderPoke from './pages/PokedexPage/HeaderPoke'
 
 
 function App() {
@@ -10,15 +11,15 @@ function App() {
     <BrowserRouter>
 		<Switch>
 			<Route exact path='/'>
-				<Header/>
+				<HomeHeader/>
 				<Home />
 			</Route>
 			<Route exact path='/pokedex'>
-				<Header/>
+				<HeaderPoke />
 				<PokedexPage />
 			</Route>
 			<Route exact path='/detail'>
-				<Header/>
+				
 				<DetailPage />
 			</Route>
 			
