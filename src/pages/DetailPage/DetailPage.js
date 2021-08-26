@@ -1,21 +1,29 @@
 import {useParams} from 'react-router-dom'
-import useRequest from '../../hooks/useRequest'
 import DetailHeader from './DetailHeader'
-import {Back, Front, Images, Power, Container, Text} from './styled'
-import PokeBall from '../../img/pokeBall.png'
-
+import {Figure, Images, Power, Container, Text} from './styled'
+import axios from 'axios'
+import {useState, useEffect} from 'react'
 
 const DetailPage = ()=>{
 	const params = useParams()
-	const pokemon = useRequest({}, `https://pokeapi.co/api/v2/pokemon/${params.name}`)
-	
+	const [pokemon, setPokemon] = useState([])
+
+	useEffect(()=>{
+		axios.get(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
+		.then(res=>{
+			console.log(res.data)
+			setPokemon(res.data)
+		})	
+	}, [])
+
+
 
 	return<>
-			<DetailHeader pokemon={pokemon}/>
+			<DetailHeader pokemon={pokemon}/>			
 			<Container>				
 				<Images>
-					{pokemon.sprites && <Front src={pokemon.sprites.front_default} />}				
-					{pokemon.sprites && <Back src={pokemon.sprites.back_default} />}			 
+					{pokemon.sprites && <Figure src={pokemon.sprites.front_default} />}				
+					{pokemon.sprites && <Figure src={pokemon.sprites.back_default} />}			 
 		  		</Images>
 		  		<Power>
 					<h3 style={{textAlign:'center'}}>Poderes</h3>

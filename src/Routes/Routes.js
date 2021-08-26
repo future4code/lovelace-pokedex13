@@ -2,20 +2,32 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Home from '../pages/Home/Home'
 import PokedexPage from '../pages/PokedexPage/PokedexPage'
 import DetailPage from '../pages/DetailPage/DetailPage'
-import HomeHeader from '../pages/Home/HomeHeader'
-import HeaderPoke from '../pages/PokedexPage/HeaderPoke'
+import {useState} from 'react'
 
-const Routes = ()=>{
+
+const Routes = (props)=>{
+	const pokemons = props.pokemons
+	const getPokemons = props.getPokemons
+	const rmFromPokedex = props.rmFromPokedex
+
+	const [pokedex, setPokedex] = useState([])
+
+	const addToPokedex = (pokemon)=>{
+		const newArrayPokedex = [...pokedex, pokemon]
+		setPokedex(newArrayPokedex)
+
+		rmFromPokedex(pokemon)
+	}
+
   return (
     <BrowserRouter>
 		<Switch>
-			<Route exact path='/'>
-				<HomeHeader/>
-				<Home />
+			<Route exact path='/'>				
+				<Home addToPokedex={addToPokedex} pokemons={pokemons}
+				getPokemons={getPokemons} rmFromPokedex={rmFromPokedex} />
 			</Route>
 			<Route exact path='/pokedex'>
-				<HeaderPoke />
-				<PokedexPage />
+				<PokedexPage pokedex={pokedex} />
 			</Route>
 			<Route exact path='/detail/:name'>				
 				<DetailPage />

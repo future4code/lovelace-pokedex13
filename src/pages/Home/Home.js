@@ -1,22 +1,31 @@
 import axios from 'axios'
 import {useEffect, useState} from 'react'
-import {PokeCard, Image, Button} from './styled'
-import useRequest from '../../hooks/useRequest'
+//import {PokeCard, Image, Button, BtnContainer} from './styled'
+import PokeCard from '../../components/PokeCard'
 import {useHistory} from 'react-router-dom'
 import PokeBall from '../../img/pokeBall.png'
+import HomeHeader from './HomeHeader'
 
 
-const Home = ()=>{
-	const pokemons = useRequest({}, 'https://pokeapi.co/api/v2/pokemon/')	
+
+const Home = (props)=>{
+	const pokemons = props.pokemons
 	const history = useHistory()
+
+	useEffect(()=>{
+		props.getPokemons()
+	})
 	
+
 	return <>
-			{pokemons.results && pokemons.results.map(poke=>{
-				return <PokeCard key={poke.name}>
-						<Image src={`${PokeBall}`} />							
-						<Button onClick={()=> history.push(`detail/${poke.name}`)}>{poke.name}</Button>
-					   </PokeCard>
+			<HomeHeader/>									
+			{pokemons.results && pokemons.results.map(poke=>{								
+				return <PokeCard key={poke.name}
+						pokeUrl={poke.url}
+						pokeName={poke.name}
+						addToPokedex={props.addToPokedex} />						
 			})}								
-		   </>
+		   </>		  
+
 }
 export default Home
