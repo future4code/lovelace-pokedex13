@@ -11,7 +11,9 @@ const Title = styled.h1`
 	text-shadow: 3px 3px 7px yellow;
 `
 const Button = styled.button`
-	height: 5vh;
+	font-size: 1rem;
+	width: 10vw;
+	height: 6vh;
 	border-radius: 30px;
 	cursor: pointer;
 `

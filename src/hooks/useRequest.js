@@ -9,7 +9,6 @@ const useRequest = (initial, url)=>{
 			console.log(res.data)
 			setData(res.data)
 		}).catch(err=>{
-			console.log(err.response)
 			alert('Deu merda!')
 		})
 	}, [url])

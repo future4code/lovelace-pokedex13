@@ -12,7 +12,9 @@ const Title = styled.h1`
 	text-shadow: 3px 3px 7px yellow;
 `
 const Button = styled.button`
-	height: 5vh;
+	font-size: 1rem;
+	height: 6vh;
+	width: 10vw;
 	border-radius: 30px;
 	cursor: pointer;
 `

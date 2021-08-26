@@ -8,12 +8,15 @@ const HeaderDiv = styled.header`
 	align-items: center;
 `
 const Title = styled.h1`
-	text-shadow: 3px 3px 7px yellow;	
+	text-shadow: 3px 3px 7px yellow;
+	font-size: 2.5rem;	
 `
 const Button = styled.button`
-	height: 5vh;
+	font-size: 1rem;
+	height: 6vh;
+	width: 10vw;
 	border-radius: 30px;
-	cursor: pointer;
+	cursor: pointer;	
 `
 
 const DetailHeader = (props)=>{

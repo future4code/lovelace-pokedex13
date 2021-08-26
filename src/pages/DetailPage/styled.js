@@ -9,13 +9,10 @@ export const Images = styled.div`
 	display: flex;
 	flex-direction: column;	
 ` 
-export const Front = styled.img`
-	width: 18vw;	
+export const Figure = styled.img`
+	width: 20vw;		
 `
-export const Back = styled.img`
-	width: 18vw;
-`
-export const Power = styled.div`
+export const Power = styled.div`	
 	background-color: lightgray;	
 	margin: 20px;
 	width: 25vw;

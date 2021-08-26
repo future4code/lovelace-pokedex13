@@ -2,21 +2,26 @@ import styled from 'styled-components'
 import PokeBall from '../../img/pokeBall.png'
 
 export const PokeCard = styled.div`
+    background-image: url(${PokeBall});
     display: inline-grid;
     border-radius: 100vh;
-    width: 30vw;
+    width: 20vw;
     height: 40vh;
-    margin-bottom: 25vh;
-    margin-left: 2vw;
+    margin: 20px;
 `
 export const Image = styled.img`
     width: 25vw;
-    margin-right: 5vw;
-    opacity: 0.75;    
+    margin-right: 5vw;        
 `
-export const Button = styled.button`
+export const Button = styled.button`    
     border-radius: 30px;
     position: relative;
-    width: 10vw;
+    top: 40vh;
+    height: 5.5vh;
+    width: 8vw;
     cursor: pointer;                
+`
+export const BtnContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
