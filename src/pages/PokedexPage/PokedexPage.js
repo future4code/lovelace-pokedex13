@@ -1,5 +1,5 @@
 import HeaderPoke from './HeaderPoke'
-import {useState, useEffect, useRef} from 'react'
+import {useEffect, useRef} from 'react'
 import axios from 'axios'
 
 
@@ -23,9 +23,7 @@ const PokedexPage = (props)=>{
 
 	useEffect(()=>{
 		fillPokedex()
-	}, [])
-
-	
+	}, [])	
 
 	return<>		
 			<HeaderPoke/>

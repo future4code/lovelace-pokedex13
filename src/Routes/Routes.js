@@ -5,21 +5,26 @@ import DetailPage from '../pages/DetailPage/DetailPage'
 import {useState} from 'react'
 
 
-const Routes = ()=>{
+const Routes = (props)=>{
+	const pokemons = props.pokemons
+	const getPokemons = props.getPokemons
+	const rmFromPokedex = props.rmFromPokedex
+
 	const [pokedex, setPokedex] = useState([])
-	
 
 	const addToPokedex = (pokemon)=>{
 		const newArrayPokedex = [...pokedex, pokemon]
 		setPokedex(newArrayPokedex)
-		console.log(pokemon)
+
+		rmFromPokedex(pokemon)
 	}
 
   return (
     <BrowserRouter>
 		<Switch>
 			<Route exact path='/'>				
-				<Home addToPokedex={addToPokedex} />
+				<Home addToPokedex={addToPokedex} pokemons={pokemons}
+				getPokemons={getPokemons} rmFromPokedex={rmFromPokedex} />
 			</Route>
 			<Route exact path='/pokedex'>
 				<PokedexPage pokedex={pokedex} />

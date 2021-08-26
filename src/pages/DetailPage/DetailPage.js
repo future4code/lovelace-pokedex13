@@ -1,5 +1,4 @@
 import {useParams} from 'react-router-dom'
-import useRequest from '../../hooks/useRequest'
 import DetailHeader from './DetailHeader'
 import {Figure, Images, Power, Container, Text} from './styled'
 import axios from 'axios'
@@ -7,7 +6,6 @@ import {useState, useEffect} from 'react'
 
 const DetailPage = ()=>{
 	const params = useParams()
-	//const pokemon = useRequest({}, `https://pokeapi.co/api/v2/pokemon/${params.name}`)
 	const [pokemon, setPokemon] = useState([])
 
 	useEffect(()=>{
