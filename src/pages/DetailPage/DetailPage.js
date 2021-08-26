@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom'
 import DetailHeader from './DetailHeader'
-import {Figure, Images, Power, Container, Text} from './styled'
+import {Figure, Images, Power, Container, Text, Types,
+Moves, MovesAndTypes} from './styled'
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 
@@ -20,22 +21,41 @@ const DetailPage = ()=>{
 
 	return<>
 			<DetailHeader pokemon={pokemon}/>			
-			<Container>				
-				<Images>
-					{pokemon.sprites && <Figure src={pokemon.sprites.front_default} />}				
-					{pokemon.sprites && <Figure src={pokemon.sprites.back_default} />}			 
-		  		</Images>
+			<Container>			
+					{pokemon.sprites && <Figure src={pokemon.sprites.front_default} />}
 		  		<Power>
-					<h3 style={{textAlign:'center'}}>Poderes</h3>
+					<h3 style={{textAlign:'center', fontSize:'1.5rem',
+					marginTop:'1vh' }}>Poderes</h3>
 					<Text>
-						<p><b>hp:</b></p>
-						<p><b>attack:</b></p>
-						<p><b>defense:</b></p>
-						<p><b>special-attack:</b></p>
-						<p><b>special-defense:</b></p>
-						<p><b>speed:</b></p>
+						<p><b>hp: </b>{pokemon.stats && pokemon.stats[0].base_stat}</p>
+						<p><b>attack: </b>{pokemon.stats && pokemon.stats[1].base_stat}</p>
+						<p><b>defense: </b>{pokemon.stats && pokemon.stats[2].base_stat}</p>
+						<p><b>special-attack: </b>{pokemon.stats && pokemon.stats[3].base_stat}</p>
+						<p><b>special-defense: </b>{pokemon.stats && pokemon.stats[4].base_stat}</p>
+						<p><b>speed: </b>{pokemon.stats && pokemon.stats[5].base_stat}</p>
 					</Text>
 				</Power>
+				<MovesAndTypes>
+				<Types>
+					<h3 style={{textAlign:'center', fontSize:'1.5rem',
+					marginTop:'1vh' }}>Categorias</h3>					
+					{pokemon.types && pokemon.types.map(tp=>{
+						return <span style={{margin:'50px'}}>
+								{tp.type.name}</span>
+					})}					
+				</Types>
+				<Moves>
+					<h3 style={{textAlign:'center', fontSize:'1.5rem',
+					marginTop:'1vh' }}>Principais Atques</h3>
+					<Text>
+						<p>{pokemon.moves && pokemon.moves[0].move.name}</p>
+						<p>{pokemon.moves && pokemon.moves[1].move.name}</p>
+						<p>{pokemon.moves && pokemon.moves[2].move.name}</p>
+						<p>{pokemon.moves && pokemon.moves[3].move.name}</p>						
+					</Text>
+				</Moves>
+				</MovesAndTypes>
+				{pokemon.sprites && <Figure src={pokemon.sprites.back_default} />}
 		  	</Container>
 		  </>			
 }
