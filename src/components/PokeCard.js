@@ -1,65 +1,53 @@
-import styled from 'styled-components'
-import PokeBall from '../img/pokeBall.png'
-import {useHistory} from 'react-router-dom'
-import {useState, useEffect} from 'react'
-import axios from 'axios'
-
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const Picture = styled.img`
-    margin-top: 15vh;
-    margin-left: 4vw;
-    width: 10vw;
-`
+  margin-top: 50px;
+  width: 150px;
+`;
 export const Card = styled.div`
-    background-image: url(${PokeBall});
-    display: inline-grid;
-    border-radius: 100vh;
-    width: 20vw;
-    height: 40vh;
-    margin: 20px;
-`
-export const BtnAdd = styled.button`    
-    border-radius: 30px;
-    position: relative;
-    top: 40vh;
-    left: 3vw;
-    height: 5.5vh;
-    width: 8vw;
-    cursor: pointer;                
-`
-export const BtnName = styled.button`    
-    border-radius: 30px;
-    position: relative;
-    top: 40vh;    
-    height: 5.5vh;
-    width: 8vw;
-    cursor: pointer;                
-`
-export const BtnContainer = styled.div`
-    position: absolute;
-    display: flex;
-    
-`
+  background-color: #d6d6d6;
+  height: 250px;
+`;
 
-const PokeCard = (props)=>{
-    const history = useHistory()
-    const [images, setImages] = useState([])
-    //const images = []
+export const BtnName = styled.button`
+  cursor: pointer;
+  border: none;
+  color: white;
+  background-color: red;
+  max-height: 35px;
+  min-height: 35px;
+  margin: 0px 15px;
+  border-radius: 10px;
+`;
 
-    useEffect(()=>{
-        axios.get(props.pokeUrl).then(res=>{
-            setImages(res.data.sprites.front_default)
-            console.log(res.data.sprites.front_default)
-            console.log(images)            
-        })
-    }, [])
+const PokeCard = (props) => {
+  const history = useHistory();
+  const [images, setImages] = useState([]);
 
-    return<Card>
-            <Picture src={images} />
-           <BtnContainer>                               
-               <BtnName onClick={()=> history.push(`detail/${props.pokeName}`)}>{props.pokeName}</BtnName>
-               <BtnAdd onClick={()=> props.addToPokedex(props.pokeUrl)} >Adicionar à Pokedex</BtnAdd>
-           </BtnContainer>
-          </Card>         
-}
-export default PokeCard
+  useEffect(() => {
+    async function fetchList() {
+      const response = await axios.get(props.pokeUrl);
+      response?.data?.sprites?.front_default &&
+        setImages(response.data.sprites.front_default);
+    }
+    fetchList();
+  }, [props.pokeUrl]);
+
+  return (
+    <Card>
+      <Picture src={images} />
+      <div>
+        <BtnName onClick={() => history.push(`detail/${props.pokeName}`)}>
+          Ver Detalhes
+        </BtnName>
+        <BtnName onClick={() => props.addToPokedex(props.pokeUrl)}>
+          Adicionar à Pokedex
+        </BtnName>
+      </div>
+    </Card>
+  );
+};
+export default PokeCard;
