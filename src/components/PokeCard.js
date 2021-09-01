@@ -6,16 +6,16 @@ import axios from 'axios'
 
 
 export const Picture = styled.img`
-    margin-top: 15vh;
-    margin-left: 4vw;
+    margin-top: 20vh;
+    margin-left: 8vw;
     width: 10vw;
 `
 export const Card = styled.div`
     background-image: url(${PokeBall});
     display: inline-grid;
     border-radius: 100vh;
-    width: 20vw;
-    height: 40vh;
+    width: 25vw;
+    height: 47.8vh;
     margin: 20px;
 `
 export const BtnAdd = styled.button`    
@@ -35,25 +35,22 @@ export const BtnName = styled.button`
     width: 8vw;
     cursor: pointer;                
 `
-export const BtnContainer = styled.div`
-    position: absolute;
+export const BtnContainer = styled.div`    
     display: flex;
-    
+    margin-top: -45vh;
+    margin-left 3.5vw;
+
 `
 
 const PokeCard = (props)=>{
     const history = useHistory()
     const [images, setImages] = useState([])
-    //const images = []
-
+    
     useEffect(()=>{
         axios.get(props.pokeUrl).then(res=>{
-            setImages(res.data.sprites.front_default)
-            console.log(res.data.sprites.front_default)
-            console.log(images)            
+            setImages(res.data.sprites.front_default)                        
         })
     }, [])
-
     return<Card>
             <Picture src={images} />
            <BtnContainer>                               

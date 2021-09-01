@@ -13,8 +13,8 @@ const Title = styled.h1`
 `
 const Button = styled.button`
 	font-size: 1rem;
-	height: 6vh;
-	width: 10vw;
+	height: 7vh;
+	width: 15vw;
 	border-radius: 30px;
 	cursor: pointer;
 `

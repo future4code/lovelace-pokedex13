@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 import PokeBall from '../../img/pokeBall.png'
 
+
 export const PokeCard = styled.div`
     background-image: url(${PokeBall});
     display: inline-grid;
     border-radius: 100vh;
     width: 20vw;
     height: 40vh;
-    margin: 20px;
+    margin: 20px;     
 `
 export const Image = styled.img`
     width: 25vw;

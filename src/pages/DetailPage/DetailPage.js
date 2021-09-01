@@ -12,7 +12,6 @@ const DetailPage = ()=>{
 	useEffect(()=>{
 		axios.get(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
 		.then(res=>{
-			console.log(res.data)
 			setPokemon(res.data)
 		})	
 	}, [])

@@ -12,22 +12,17 @@ const Routes = (props)=>{
 
 	const [pokedex, setPokedex] = useState([])
 
-	const addToPokedex = (pokemon)=>{
-		const newArrayPokedex = [...pokedex, pokemon]
-		setPokedex(newArrayPokedex)
-
-		rmFromPokedex(pokemon)
-	}
-
+	
   return (
     <BrowserRouter>
 		<Switch>
 			<Route exact path='/'>				
-				<Home addToPokedex={addToPokedex} pokemons={pokemons}
-				getPokemons={getPokemons} rmFromPokedex={rmFromPokedex} />
+				<Home addToPokedex={props.addToPokedex} pokemons={pokemons}
+				getPokemons={getPokemons} />
 			</Route>
 			<Route exact path='/pokedex'>
-				<PokedexPage pokedex={pokedex} />
+				<PokedexPage pokeData={props.pokeData} pokemons={pokemons}
+				removePoke={props.removePoke} />
 			</Route>
 			<Route exact path='/detail/:name'>				
 				<DetailPage />
