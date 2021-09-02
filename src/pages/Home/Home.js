@@ -1,23 +1,24 @@
 import axios from 'axios'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
 import PokeCard from '../../components/PokeCard'
 import {useHistory} from 'react-router-dom'
- import HomeHeader from './HomeHeader'
+import HomeHeader from './HomeHeader'
+import Context from '../../global/Context.js'
 
 
 
 const Home = (props)=>{
-	const pokemons = props.pokemons
+	const {states, setters, requests} = useContext(Context)
 	const history = useHistory()	
 
 	useEffect(()=>{
-		props.getPokemons()
+		requests.getPokemons()
 	}, [])
 	
 
 	return <>
 			<HomeHeader/>												
-			{pokemons && pokemons.map(poke=>{								
+			{states.pokemons && states.pokemons.map(poke=>{								
 				return <PokeCard key={poke.name}
 						poke={poke}
 						pokeUrl={poke.url}

@@ -1,9 +1,10 @@
 import HeaderPoke from './HeaderPoke'
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import PokeBall from '../../img/pokeBall.png'
 import {useHistory} from 'react-router-dom'
+import Context from '../../global/Context'
 
 
 const Card = styled.div`
@@ -44,20 +45,19 @@ const BtnContainer = styled.div`
 
 //Inicio do componente funcional
 const PokedexPage = (props)=>{
-	const [pokeData, setPokeData] = useState(props.pokeData)
+	const {states, setters, requests} = useContext(Context)
 	const history = useHistory()
-	console.log(pokeData)
 
 	const removePokedex = (name)=>{
-		const newPedexList = pokeData && pokeData.filter(poke=>{
+		const newPedexList = states.pokeData && states.pokeData.filter(poke=>{
 			return poke.name !== name
 		})
-		setPokeData(newPedexList)
+		setters.setPokeData(newPedexList)
 	}
 
 return<>		
 		<HeaderPoke/>												
-			{pokeData.length > 0 ? pokeData.map(data=>{
+			{states.pokeData.length > 0 ? states.pokeData.map(data=>{
 				return<Card> <Image src={data.sprites.front_default}/>
 					  	<BtnContainer>					  		                               
 			               <BtnName onClick={()=> history.push(`detail/${data.name}`)}>{data.name}</BtnName>

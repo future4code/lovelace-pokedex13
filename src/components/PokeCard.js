@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import PokeBall from '../img/pokeBall.png'
 import {useHistory} from 'react-router-dom'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
+import Context from '../global/Context'
 
 
 export const Picture = styled.img`
@@ -43,6 +44,7 @@ export const BtnContainer = styled.div`
 `
 
 const PokeCard = (props)=>{
+    const {states, setters, requests} = useContext(Context)
     const history = useHistory()
     const [images, setImages] = useState([])
     
@@ -55,7 +57,7 @@ const PokeCard = (props)=>{
             <Picture src={images} />
            <BtnContainer>                               
                <BtnName onClick={()=> history.push(`detail/${props.pokeName}`)}>{props.pokeName}</BtnName>
-               <BtnAdd onClick={()=> props.addToPokedex(props.pokeUrl)} >Adicionar à Pokedex</BtnAdd>
+               <BtnAdd onClick={()=> requests.addToPokedex(props.pokeUrl)} >Adicionar à Pokedex</BtnAdd>
            </BtnContainer>
           </Card>         
 }
